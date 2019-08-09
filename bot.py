@@ -6,7 +6,7 @@ import logging
 import time
 
 
-class BotLogsHandler(logging.Handler,):
+class BotLogsHandler(logging.Handler):
 
     def emit(self, record):
         log_entry = self.format(record)
@@ -44,7 +44,8 @@ def main():
     headers = {"Authorization": devman_token}
     params = {}
 
-    bot.send_message(chat_id=chat_id, text=logger.info('Бот запущен!'))
+    logger.info('Бот запущен!')
+    # bot.send_message(chat_id=chat_id, text='Бот запущен!')
 
     while True:
         try:
