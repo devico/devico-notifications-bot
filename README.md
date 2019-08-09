@@ -19,8 +19,6 @@ Installing
 
 Install and update using `pip`_:
 
-.. code-block:: text
-
     pip install -r requirements.txt
     
 
@@ -32,8 +30,6 @@ Create .env file with two tokens
 * DEVMAN_TOKEN
 
 Run on development enviroment:
-
-.. code-block:: text
 
     python bot.py
 
@@ -49,13 +45,9 @@ Download and install the Heroku CLI.
 If you haven't already, log in to your Heroku account and follow the prompts 
 to create a new SSH public key.
 
-.. code-block:: text
-
     $ heroku login
 Clone the repository
 Use Git to clone devico-notifications-bot's source code to your local machine.
-
-.. code-block:: text
 
     $ heroku login
     $ heroku git:clone -a devico-notifications-bot
@@ -63,8 +55,6 @@ Use Git to clone devico-notifications-bot's source code to your local machine.
     
 Deploy your changes
 Make some changes to the code you just cloned and deploy them to Heroku using Git.
-
-.. code-block:: text
 
     $ git add .
     $ git commit -am "make it better"
