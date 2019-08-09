@@ -1,7 +1,7 @@
 Devico Notifications Bot
 =====
 
-This bot is designed to track the learning process at Devman. 
+This bot is designed to track the learning process at [Devman](https://dvmn.org/) 
 The bot checks the status of the job sent for verification and 
 sends notifications with the status text.
 
