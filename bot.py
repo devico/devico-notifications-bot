@@ -41,9 +41,13 @@ def main():
             data = request_api(url, headers=headers, params=params)
         except requests.exceptions.ReadTimeout as e:
             logging.error(e)
+            logger.info('Бот упал с ошибкой:')
+            logger.info(e)
             continue
         except requests.exceptions.ConnectionError as errc:
             logging.error("Error Connecting:", errc)
+            logger.info('Бот упал с ошибкой:')
+            logger.info(errc)
             time.sleep(10)
 
         if data['status'] == 'found':
