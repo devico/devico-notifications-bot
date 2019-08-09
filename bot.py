@@ -1,22 +1,16 @@
 import requests
-import json
 import telegram
 import os
 import logging
 import time
 
 
-class BotLogsHandler(logging.Handler):
-
-    def emit(self, record):
-        log_entry = self.format(record)
-        return log_entry
-
-
 logging.basicConfig(format=u'%(process)d %(LevelName)s %(message)s')
 logger = logging.getLogger('BotLogger')
 logger.setLevel(logging.INFO)
-logger.addHandler(BotLogsHandler())
+
+
+telegram_token = os.getenv("TELEGRAM_TOKEN")
 
 
 def request_api(url, headers, params):
@@ -36,16 +30,9 @@ def send_bot_message(negative_attempt, bot, chat_id):
 def main():
     url = 'https://dvmn.org/api/long_polling/'
     devman_token = os.getenv("DEVMAN_TOKEN")
-
-    telegram_token = os.getenv("TELEGRAM_TOKEN")
-    bot = telegram.Bot(token=telegram_token)
     chat_id = 323863021
-
     headers = {"Authorization": devman_token}
     params = {}
-
-    print(logger.info('Бот запущен!'))
-    # bot.send_message(chat_id=chat_id, text='Бот запущен!')
 
     while True:
         try:
@@ -59,13 +46,26 @@ def main():
 
         if data['status'] == 'found':
             last_tsmp = data['last_attempt_timestamp']
-            params={'timestamp': last_tsmp}
+            params = {'timestamp': last_tsmp}
             negative_attempt = data['new_attempts']['is_negative']
             send_bot_message(negative_attempt, bot, chat_id)
         else:
             tsmp = data['timestamp_to_request']
-            params={'timestamp': tsmp}
+            params = {'timestamp': tsmp}
 
 
 if __name__ == '__main__':
+    bot = telegram.Bot(token=telegram_token)
+    chat_id = 323863021
+
+
+    class BotLogsHandler(logging.Handler):
+
+        def emit(self, record):
+            log_entry = self.format(record)
+            bot.send_message(chat_id=chat_id, text=log_entry)
+
+
+    logger.addHandler(BotLogsHandler())
+
     main()
