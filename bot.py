@@ -5,7 +5,18 @@ import os
 import logging
 import time
 
-logging.basicConfig(format=u'%(filename)s[LINE:%(lineno)d]-8s [%(asctime)s]  %(message)s', level = logging.DEBUG)
+
+class BotLogsHandler(logging.Handler,):
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        return log_entry
+
+
+logging.basicConfig(format=u'%(process)d %(LevelName)s %(message)s')
+logger = logging.getLogger('BotLogger')
+logger.setLevel(logging.INFO)
+logger.addHandler(BotLogsHandler())
 
 
 def request_api(url, headers, params):
@@ -32,6 +43,8 @@ def main():
 
     headers = {"Authorization": devman_token}
     params = {}
+
+    bot.send_message(chat_id=chat_id, text=logger.info('Бот запущен!'))
 
     while True:
         try:
