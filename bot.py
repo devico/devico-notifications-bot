@@ -34,6 +34,8 @@ def main():
     headers = {"Authorization": devman_token}
     params = {}
 
+    logger.info('Бот запущен!')
+
     while True:
         try:
             data = request_api(url, headers=headers, params=params)
