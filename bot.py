@@ -44,7 +44,7 @@ def main():
     headers = {"Authorization": devman_token}
     params = {}
 
-    logger.info('Бот запущен!')
+    print(logger.info('Бот запущен!'))
     # bot.send_message(chat_id=chat_id, text='Бот запущен!')
 
     while True:
