@@ -17,7 +17,7 @@ Built With
 Installing
 ----------
 
-Install and update using `pip`_:
+Install and update using `pip`:
 
     pip install -r requirements.txt
     
@@ -26,8 +26,9 @@ Basic usage
 -----------
 
 Create .env file with two tokens
-* TELEGRAM_TOKEN
-* DEVMAN_TOKEN
+* TELEGRAM_TOKEN - token your bot for notifications
+* DEVMAN_TOKEN - you api token of devman account
+* USER_CHAT_ID - chat_id your telegram account (to get use @userinfobot in telegram)
 
 Run on development enviroment:
 
